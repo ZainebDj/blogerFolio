@@ -22,6 +22,9 @@ export class EditUserComponent implements OnInit {
       this.service.getAllRole().subscribe(res =>{
         this.rolelist=res
       })
+      this.service.getAllEduction().subscribe(res =>{
+        this.educationlist=res
+      })
     }
     ngOnInit(): void {
       if (this.data.usercode != '' && this.data.usercode != null) {        
@@ -30,6 +33,7 @@ export class EditUserComponent implements OnInit {
     }
     rolelist: any;
     editData:any;
+    educationlist:any
     signupForm = this.formBuilder.group({
       id: this.formBuilder.control(''),
       name: this.formBuilder.control(''),
@@ -38,21 +42,23 @@ export class EditUserComponent implements OnInit {
       gender: this.formBuilder.control('male'),
       role: this.formBuilder.control('', Validators.required),
       isactive: this.formBuilder.control(false),
-      //birthday: ['', Validators.required]
+      dob: ['', Validators.required],
+      education: this.formBuilder.control('', Validators.required)
+
     });
     loadUserData(code : any){
-      this.service.getUserbyCode(code).subscribe(res => {
-        console.log(this.editData);
-        
+      this.service.getUserbyCode(code).subscribe(res => {        
         this.editData = res;
-        this.signupForm.setValue({
+        this.signupForm.patchValue({
           id: this.editData.id, 
           name: this.editData.name,
           password: this.editData.password, 
           email: this.editData.email, 
           gender: this.editData.gender,
           role: this.editData.role, 
-          isactive: this.editData.isactive
+          isactive: this.editData.isactive,
+          dob:this.editData.dob,
+          education:this.editData.education
         });
       });
     }

@@ -11,7 +11,13 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   signupForm!: FormGroup;
-
+  education: string[] = [
+    'Matric',
+    'Diploma',
+    'Intermediate',
+    'Graduate',
+    'Post Graduate',
+  ];
   constructor(
     private formBuilder: FormBuilder, 
     private service: AuthService,
@@ -27,7 +33,8 @@ export class SignupComponent {
       gender: this.formBuilder.control('female'),
       role: this.formBuilder.control(''),
       isactive: this.formBuilder.control(false),
-     // birthday: ['', Validators.required]
+      dob: ['', Validators.required],
+      education: ['', Validators.required]
     });
   }
 
@@ -39,7 +46,7 @@ export class SignupComponent {
         this.router.navigate(['login'])
       });
     } else {
-console.log(this.signupForm.value);
+      console.log(this.signupForm.value);
       this.toastr.warning('Please enter valid data.')
     }
   }

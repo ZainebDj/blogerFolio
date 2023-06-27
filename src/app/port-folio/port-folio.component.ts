@@ -1,5 +1,6 @@
 import { Component,HostListener } from '@angular/core';
 import { UserDetails } from 'src/models/UserDetails';
+import { AuthService } from '../service/auth.service';
 // import {MatIconModule} from '@angular/material/icon';
 
 @Component({
@@ -39,9 +40,10 @@ export class PortFolioComponent {
   //   this._birthday = value;
   // }
   // website : string ="";
-
-  constructor() {
+  constructor(private service:AuthService) {
     // Populate user details with sample data
+    
+    
     this.userDetails.name = '';
     this.userDetails.birthday = new Date("1/May/1995");
     this.userDetails.website = 'www.example.com';

@@ -13,11 +13,20 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./port-folio-detail.component.scss']
 })
 export class PortFolioDetailComponent implements AfterViewInit {
+  isadmin=false;
   constructor( 
     private service:AuthService,
     private dialog: MatDialog,
     private toaster: ToastrService
     ) {
+      let role=sessionStorage.getItem('role');
+      if(role=='admin'){
+        this.isadmin=true;
+      }else{
+        this.isadmin=false;
+      }
+      console.log(role);
+      
     this.LoadUser();
   }
   userlist: any;
@@ -36,17 +45,27 @@ export class PortFolioDetailComponent implements AfterViewInit {
       this.dataSource.sort = this.sort;
     });
   }
-  displayedColumns: string[] = ['username', 'name', 'email', 'status', 'role', 'action'];
+  displayedColumns: string[] = [
+    'username',
+    'name',
+    'email',
+    'status',
+    'role',
+    'dob',    
+    'education',
+    'action',
+    ];
 
   updateUser(code: any) {
-    this.OpenDialog('1000ms', '600ms', code);
+    this.OpenDialog('100ms', '600ms', code);
   }
 
   OpenDialog(enteranimation: any, exitanimation: any, code: string) {
     const popup = this.dialog.open(EditUserComponent, {
       enterAnimationDuration: enteranimation,
       exitAnimationDuration: exitanimation,
-      width: '30%',
+      width: '40%',
+      height: '60%',
       data: {
         usercode: code
       }
@@ -56,12 +75,19 @@ export class PortFolioDetailComponent implements AfterViewInit {
     });
     
   }
-deleteUser(code: any) {
+  deleteUser(code: any) {
     this.service.deleteUser(code).subscribe(res => {
       this.toaster.warning('User deleted');
       this.LoadUser()
     })
   }
-    
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  } 
 
 }

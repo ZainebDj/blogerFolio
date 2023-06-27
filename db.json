@@ -7,16 +7,75 @@
       "email": "admin@user.user",
       "gender": "female",
       "role": "admin",
-      "isactive": true
+      "education": "Diplome",
+      "isactive": true,
+      "dob": "2023-06-12T22:00:00.000Z"
     },
     {
       "id": "tester",
       "name": "tester1",
-      "email": "user@user.user",
       "password": "tester",
+      "email": "user@user.user",
+      "gender": "male",
+      "role": "staff",
+      "isactive": true,
+      "dob": "2023-06-12T22:00:00.000Z",
+      "education": "Post Graduate"
+    },
+    {
+      "id": "test1",
+      "name": "test1",
+      "password": "test",
+      "email": "test@test.con",
+      "gender": "male",
+      "role": "staff",
+      "isactive": false,
+      "dob": "2023-06-12T22:00:00.000Z",
+      "education": "Matric"
+    },
+    {
+      "id": "test2",
+      "name": "test2",
+      "email": "test@test.con",
+      "password": "test",
       "gender": "male",
       "role": "",
+      "education": "Diplome",
+      "dob": "2023-06-12T22:00:00.000Z",
       "isactive": false
+    },
+    {
+      "id": "user1",
+      "name": "test1",
+      "email": "test@test.con",
+      "password": "user",
+      "gender": "female",
+      "role": "",
+      "education": "Diplome",
+      "dob": "2023-06-12T22:00:00.000Z",
+      "isactive": false
+    },
+    {
+      "id": "test23",
+      "name": "user",
+      "email": "user@user.user",
+      "password": "user",
+      "gender": "female",
+      "role": "",
+      "isactive": false,
+      "education": "Diplome",
+      "dob": "2023-06-12T22:00:00.000Z"
+    },
+    {
+      "id": "test22",
+      "name": "test1",
+      "email": "test@test.con",
+      "password": "test",
+      "gender": "female",
+      "role": "",
+      "isactive": false,
+      "dob": "2016-01-03T23:00:00.000Z",
+      "education": "Graduate"
     }
   ],
   "role": [
@@ -27,6 +86,32 @@
     {
       "code": "tech",
       "name": "Technician"
+    }
+  ],
+  "education": [
+    {
+      "value": "Bachelor",
+      "label": "Bachelor"
+    },
+    {
+      "value": "Matric",
+      "label": "Matric"
+    },
+    {
+      "value": "Intermediate",
+      "label": "Intermediate"
+    },
+    {
+      "value": "Post Graduate",
+      "label": "Post Graduate"
+    },
+    {
+      "value": "Graduate",
+      "label": "Graduate"
+    },
+    {
+      "value": "Diploma",
+      "label": "Diploma"
     }
   ]
 }

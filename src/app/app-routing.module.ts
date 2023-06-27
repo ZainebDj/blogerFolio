@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [ 
   { path: "", component: HomeComponent } ,
-  { path: "profil", component: PortFolioComponent,canActivate:[authGuard] } ,
+  { path: "profil", component: PortFolioComponent } ,
   { path: "signup", component: SignupComponent } ,
   { path: "login", component: AuthComponent },
   { path: "detail", component: PortFolioDetailComponent ,canActivate:[authGuard]  },

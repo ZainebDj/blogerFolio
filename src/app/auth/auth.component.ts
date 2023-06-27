@@ -36,6 +36,7 @@ export class AuthComponent {
             this.router.navigate(['detail']);
           } else {
             this.toastr.error('Please contact Admin', 'InActive User');
+            
           }
         } else {
           this.toastr.error('Invalid credentials');

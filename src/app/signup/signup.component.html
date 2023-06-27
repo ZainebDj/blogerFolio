@@ -23,17 +23,25 @@
                   <input type="password" matInput formControlName="password" >
                 </mat-form-field>
                 
-                <mat-form-field  class="example-full-width">
-                  <mat-label>Birthday</mat-label>
-                  <input matInput [matDatepicker]="picker">
+                <mat-form-field >
+                  <mat-label>Date of birth</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="dob">
                   <mat-hint>MM/DD/YYYY</mat-hint>
-                  <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
-                  <mat-datepicker #picker ></mat-datepicker>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
                 <mat-radio-group formControlName="gender" name="gender" aria-label="Select an option">
                   <mat-radio-button value="male">Male</mat-radio-button>
                   <mat-radio-button value="female">Female</mat-radio-button>
                 </mat-radio-group>
+                <mat-form-field >
+                    <mat-label>Education</mat-label>
+                    <mat-select formControlName="education">
+                        <mat-option *ngFor="let val of education" [value]="val">{{val}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                  
                 <div class="example-button-row">
                   <button mat-raised-button color="primary">Submit</button>
                   <a href="#login" routerLinkActive="router-link-active"  mat-raised-button target="_blank">Login</a>

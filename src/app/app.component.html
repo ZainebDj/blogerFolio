@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" *ngIf="isMenuVisible">
+<mat-toolbar  color="primary" *ngIf="isMenuVisible">
    <mat-toolbar-row>
    <span>BlogerFolio</span>
 
@@ -6,7 +6,7 @@
    <!-- <a *ngIf="isadmin" routerLink="/user">User</a> -->
    <div class="spacer"></div>
 
-   <button mat-raised-button routerLink="/login">Logout</button>
+   <button mat-raised-button (click)="logout()" >Logout</button>
 </mat-toolbar-row>
 </mat-toolbar>  
 <div class="container-fluid">

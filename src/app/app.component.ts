@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements DoCheck {
   title = 'blogerFolio';
   isadmin=false;
+  isactive=false;
   isMenuVisible=false;
   constructor(private route:Router){
     let role=sessionStorage.getItem('role');
@@ -19,10 +20,15 @@ export class AppComponent implements DoCheck {
   ngDoCheck(): void {
     let currentroute = this.route.url;
     let role=sessionStorage.getItem('role');
-    if (currentroute == '/#login' || currentroute == '/#signup' || currentroute == '/') {
+    if (currentroute == '/#login' || currentroute == '/#signup' || currentroute == '/' || currentroute == '/login' || currentroute == '/signup' ) {
       this.isMenuVisible = false
     } else {
       this.isMenuVisible = true
+    }
+    if (currentroute == '/detail' ) {
+      this.isactive = false
+    } else {
+      this.isactive = true
     }
 
     if (role == 'admin') {
@@ -30,5 +36,9 @@ export class AppComponent implements DoCheck {
     }else{
       this.isadmin = false;
     }
+  }
+  logout(){
+    localStorage.removeItem('token')
+    this.route.navigate(['/']);
   }
 }
