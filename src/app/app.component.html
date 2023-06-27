@@ -1,7 +1,17 @@
-<!-- <app-nav-bar></app-nav-bar>
-<app-port-folio></app-port-folio>
+<mat-toolbar color="primary" *ngIf="isMenuVisible">
+   <mat-toolbar-row>
+   <span>BlogerFolio</span>
 
+   <span class="example-spacer"></span>
+   <!-- <a *ngIf="isadmin" routerLink="/user">User</a> -->
+   <div class="spacer"></div>
 
- <app-footer></app-footer> -->
-
- <app-auth></app-auth>
+   <button mat-raised-button routerLink="/login">Logout</button>
+</mat-toolbar-row>
+</mat-toolbar>  
+<div class="container-fluid">
+   <div class="card-box">
+      
+     <router-outlet></router-outlet>
+  </div>
+</div>

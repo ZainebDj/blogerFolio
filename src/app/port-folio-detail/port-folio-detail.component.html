@@ -1,70 +1,50 @@
-<app-nav-bar></app-nav-bar>
-    <main id="main">
-  
-      <!-- ======= Breadcrumbs ======= -->
-      <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container">
-  
-          <div class="d-flex justify-content-between align-items-center">
-            <h2>Portfoio Details</h2>
-            <ol>
-              <li><a href="index.html">Home</a></li>
-              <li>Portfoio Details</li>
-            </ol>
-          </div>
-  
-        </div>
-      </section><!-- End Breadcrumbs -->
-  
-      <!-- ======= Portfolio Details Section ======= -->
-      <section id="portfolio-details" class="portfolio-details">
-        <div class="container">
-  
-          <div class="row gy-4">
-  
-            <div class="col-lg-8">
-              <div class="portfolio-details-slider swiper">
-                <div class="swiper-wrapper align-items-center">
-  
-                  <div class="swiper-slide">
-                    <img src="../../assets/img/portfolio/portfolio-details-1.jpg" alt="">
-                  </div>
-  
-                  <div class="swiper-slide">
-                    <img src="../../assets/img/portfolio/portfolio-details-2.jpg" alt="">
-                  </div>
-  
-                  <div class="swiper-slide">
-                    <img src="../../assets/img/portfolio/portfolio-details-3.jpg" alt="">
-                  </div>
-  
-                </div>
-                <div class="swiper-pagination"></div>
-              </div>
-            </div>
-  
-            <div class="col-lg-4">
-              <div class="portfolio-info">
-                <h3>Project information</h3>
-                <ul>
-                  <li><strong>Category</strong>: Web design</li>
-                  <li><strong>Client</strong>: ASU Company</li>
-                  <li><strong>Project date</strong>: 01 March, 2020</li>
-                  <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-                </ul>
-              </div>
-              <div class="portfolio-description">
-                <h2>This is an example of portfolio detail</h2>
-                <p>
-                  Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
-                </p>
-              </div>
-            </div>
-  
-          </div>
-  
-        </div>
-      </section><!-- End Portfolio Details Section -->
-  
-    </main><!-- End #main -->
-    <app-footer></app-footer>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort >
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Pseudo </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef  > Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.isactive ? 'Active' : 'inActive'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+      <td mat-cell *matCellDef="let element">{{element.role===''?'Unassigned':element.role}}  </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element"> 
+        <button *ngIf="element.role != 'admin'"  (click)="updateUser(element.id)" type="submit" mat-raised-button>Edit</button>
+        &nbsp;&nbsp;
+        <button *ngIf="element.role != 'admin'" (click)="deleteUser(element.id)" type="submit" mat-raised-button color="warn">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

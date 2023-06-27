@@ -1,0 +1,46 @@
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center">Sign Up</h2>
+            <form class="example-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+              <mat-form-field class="example-full-width">
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="id" >
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="name" >
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email" >
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Password</mat-label>
+                  <input type="password" matInput formControlName="password" >
+                </mat-form-field>
+                
+                <mat-form-field  class="example-full-width">
+                  <mat-label>Birthday</mat-label>
+                  <input matInput [matDatepicker]="picker">
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                  <mat-datepicker #picker ></mat-datepicker>
+                </mat-form-field>
+                <mat-radio-group formControlName="gender" name="gender" aria-label="Select an option">
+                  <mat-radio-button value="male">Male</mat-radio-button>
+                  <mat-radio-button value="female">Female</mat-radio-button>
+                </mat-radio-group>
+                <div class="example-button-row">
+                  <button mat-raised-button color="primary">Submit</button>
+                  <a href="#login" routerLinkActive="router-link-active"  mat-raised-button target="_blank">Login</a>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
