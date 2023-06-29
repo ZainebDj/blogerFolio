@@ -1,11 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../service/auth.service';
 import { SignupComponent } from './signup.component';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrModule } from 'ngx-toastr';
+import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -16,8 +22,24 @@ describe('SignupComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SignupComponent,],
-      providers: [FormBuilder, AuthService, ToastrService],
-      imports:[HttpClientTestingModule,ToastrModule,ToastrModule.forRoot()]
+      providers: [FormBuilder, AuthService, ToastrService,
+      // Provide a mock ActivatedRoute
+      {
+        provide: ActivatedRoute,
+        useValue: {
+          paramMap: of({
+            get: (param: string) => {
+              // Return dummy values for any route parameters your component expects
+              if (param === 'id') {
+                return '123';
+              }
+              return null;
+            },
+          }),
+        },
+      },
+],
+      imports:[HttpClientTestingModule,ToastrModule,ToastrModule.forRoot(),MatFormFieldModule,MatDatepickerModule,MatOptionModule,MatNativeDateModule,MatRadioModule,MatSelectModule,ReactiveFormsModule,RouterModule,MatFormFieldControl]
     }).compileComponents();
   });
 

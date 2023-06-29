@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AuthComponent } from './auth.component';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 describe('AuthComponent', () => {
   
@@ -18,8 +19,29 @@ describe('AuthComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AuthComponent],
-      imports: [ReactiveFormsModule,HttpClientTestingModule,ToastrModule.forRoot(),],
+      imports: [ReactiveFormsModule,
+        HttpClientTestingModule,
+        ToastrModule.forRoot(),        
+        MatFormFieldModule,
+        RouterModule
+      ],
       providers: [
+                // Provide a mock ActivatedRoute
+                {
+                  provide: ActivatedRoute,
+                  useValue: {
+                    paramMap: of({
+                      get: (param: string) => {
+                        // Return dummy values for any route parameters your component expects
+                        if (param === 'id') {
+                          return '123';
+                        }
+                        return null;
+                      },
+                    }),
+                  },
+                },
+        
         FormBuilder,
         AuthService,
         ToastrService,

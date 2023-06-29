@@ -25,23 +25,30 @@ export class AuthComponent {
     password: this.formBuilder.control('', Validators.required)
   
   });
+  
   proceedLogin() {
     if (this.loginForm.valid) {
-      this.service.getUserbyCode(this.loginForm.value.id).subscribe(item => {
-        this.result = item;
-        if (this.result.password === this.loginForm.value.password) {
-          if (this.result.isactive) {
-            sessionStorage.setItem('username',this.result.id);
-            sessionStorage.setItem('role',this.result.role);
-            this.router.navigate(['detail']);
+        
+      if (!this.service.isLoggedIn()) {
+        this.toastr.error('Please create an account','User does not exist');
+        
+        return; 
+      }else{
+        this.service.getUserbyCode(this.loginForm.value.id).subscribe(item => {
+          this.result = item;          
+          if (this.result.password === this.loginForm.value.password) {
+            if (this.result.isactive) {
+              sessionStorage.setItem('username',this.result.id);
+              sessionStorage.setItem('role',this.result.role);
+              this.router.navigate(['detail']);
+            } else {
+              this.toastr.error('Please contact Admin', 'InActive User');                
+            }
           } else {
-            this.toastr.error('Please contact Admin', 'InActive User');
-            
-          }
-        } else {
-          this.toastr.error('Invalid credentials');
-        }
-      });
+            this.toastr.error('Invalid credentials');
+          }        
+        });
+      }
     } else {
       this.toastr.warning('Please enter valid data.')
     }

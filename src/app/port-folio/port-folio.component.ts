@@ -9,7 +9,10 @@ import { AuthService } from '../service/auth.service';
   // imports: [MatIconModule],
 })
 export class PortFolioComponent {
-  
+  constructor(private servic:AuthService){
+    this.user=servic.getUserbyCode('user')
+  }
+  user : any
   degrees =[
     'Associate Degree',
     'Bachelor\'s Degree',

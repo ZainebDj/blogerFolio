@@ -7,6 +7,9 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
 import { of } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatOptionModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 describe('PortFolioDetailComponent', () => {
   let component: PortFolioDetailComponent;
@@ -24,7 +27,7 @@ describe('PortFolioDetailComponent', () => {
         { provide: MatDialog, useValue: dialogMock },
         { provide: ToastrService, useValue: toastrServiceMock },
       ],
-      imports:[HttpClientTestingModule]
+      imports:[HttpClientTestingModule, MatFormFieldModule, MatOptionModule, MatPaginatorModule]
     }).compileComponents();
   });
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,11 +7,29 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private sharedData: any;
-
+ 
   apiurl='http://localhost:3000/user';
   constructor(private http:HttpClient) {
 
    }
+   handleGetRequest() {
+  
+    this.http.get(this.apiurl).subscribe(
+      (response) => {
+        // Handle successful response
+        console.log('Response:', response);
+      },
+      (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          // Handle 404 error
+          console.log('404 Error:', error);
+        } else {
+          // Handle other errors
+          console.error('Error:', error);
+        }
+      }
+    );
+  }
   signUpUser(inputdata:any){    
     return this.http.post(this.apiurl,inputdata)
   }
