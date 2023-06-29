@@ -43,7 +43,7 @@ export class SignupComponent {
     if (this.signupForm.valid) {
       this.service.proceedSignup(this.signupForm.value).subscribe(result => {
         this.toastr.success('Please contact admin for enable access.','Registered successfully')
-        this.router.navigate(['login'])
+        this.router.navigate(['/'])
       });
     } else {
       console.log(this.signupForm.value);

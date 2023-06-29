@@ -5,12 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PortFolioComponent } from './port-folio/port-folio.component';
 import { PortFolioDetailComponent } from './port-folio-detail/port-folio-detail.component';
-import { NavBarComponent } from './navbar/nav-bar/nav-bar.component';
-import { FooterComponent } from './navbar/footer/footer.component';
+
 import { AuthComponent } from './auth/auth.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 //Module
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -30,6 +28,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -38,10 +37,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     AppComponent,
     PortFolioComponent,
     PortFolioDetailComponent,
-    NavBarComponent,
-    FooterComponent,
+  
     AuthComponent,
-    HomeComponent,
     SignupComponent,
     EditUserComponent
   ],
@@ -64,7 +61,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatFormFieldModule
 
   ],
   providers: [],
